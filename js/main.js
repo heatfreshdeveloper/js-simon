@@ -8,18 +8,48 @@
    8 - Mediante un alert vengono mostrati quali e quanti numeri sono stati indovinati. 
 */
 
+let numbs = [];
+let prompts = [];
 alert(numeriRandom());
 
+const timer = setTimeout(() => {
+    if(promptNumeri()) {
+        isEqual()
+    }
+}, 3000);
 
-
-
-
-
-
-
-// Sezione Function del programma 
+// Sezione Functions del programma 
 
 function numeriRandom() {
-    const randoms = Math.floor(Math.random()*10)
-    return randoms
+    for (var i = 0; i < 5; i++)
+    {
+      numbs.push(Math.floor(Math.random() * 20) + 1)
+    }
+    return numbs
+}
+
+function promptNumeri() {
+    let numero1 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
+    let numero2 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
+    let numero3 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
+    let numero4 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
+    let numero5 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
+
+    prompts.push(numero1, numero2, numero3, numero4, numero5);
+
+    return prompts
+}
+
+function isEqual() {
+    if(numbs.length!=prompts.length) {
+        alert("Non sono stati inseriti tutti i numeri!");
+    } else {
+        for(let i=0;i<numbs.length;i++) {
+            if(numbs[i]!=prompts[i]) {
+                alert("Tutti i numeri corrispondono!")
+            } else {
+                alert("I numeri non corrispondono!")
+            }
+        }
+    }
 }
