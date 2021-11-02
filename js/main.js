@@ -10,46 +10,37 @@
 
 let numbs = [];
 let prompts = [];
-alert(numeriRandom());
+let numbsToWin = [];
 
-const timer = setTimeout(() => {
-    if(promptNumeri()) {
-        isEqual()
-    }
-}, 3000);
+const numbsRandom = numeriRandom();
+alert("Memorizza questi numeri entro 30 secondi" + numbsRandom);
+
+setTimeout(promptNumeri, 3000);
 
 // Sezione Functions del programma 
 
 function numeriRandom() {
+    let numbs = [];
     for (var i = 0; i < 5; i++)
     {
-      numbs.push(Math.floor(Math.random() * 20) + 1)
+        const numbers = (Math.floor(Math.random() * 20) + 1)
+        numbs.push(numbers)
     }
-    return numbs
+    return numeriRandom
 }
 
 function promptNumeri() {
-    let numero1 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
-    let numero2 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
-    let numero3 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
-    let numero4 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
-    let numero5 = parseInt(prompt("Inserire uno dei numeri che hai visto prima!"));
-
-    prompts.push(numero1, numero2, numero3, numero4, numero5);
-
-    return prompts
-}
-
-function isEqual() {
-    if(numbs.length!=prompts.length) {
-        alert("Non sono stati inseriti tutti i numeri!");
-    } else {
-        for(let i=0;i<numbs.length;i++) {
-            if(numbs[i]!=prompts[i]) {
-                alert("Tutti i numeri corrispondono!")
-            } else {
-                alert("I numeri non corrispondono!")
-            }
-        }
+    let prompts = [];
+    let rightNumbs = [];
+    for (let i = 0; i < 5; i++) {
+        const promptUser = parseInt(prompt("Inserisci i numeri che hai memorizzato!"));
+        prompts.push(promptUser)
     }
+    prompts.forEach(numUser => {
+        if(numbsRandom.includes(numUser)) {
+            rightNumbs.push(numUser)
+        }
+    })
+
+    alert(`Hai indovinato ${rightNumbs.length} numeri su 5!`)
 }
